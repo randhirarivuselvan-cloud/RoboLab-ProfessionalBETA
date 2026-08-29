@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RoboLab | Universal Professional</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header><div class="brand">ROBO<span>LAB</span></div><div class="sub">SynapseX Robotics & Technologies</div></header>
+<main>
+<section class="hero"><h1>Universal AI Robotics Engineering Workspace</h1><p>Generate, synchronize, verify and audit professional robotics projects.</p></section>
+<section class="card">
+<h2>New Project</h2>
+<input id="name" placeholder="Project name">
+<textarea id="idea" placeholder="Describe your robotics idea..."></textarea>
+<button onclick="createProject()">Create Project</button>
+<pre id="result"></pre>
+</section>
+<section class="pipeline">
+<div>🧠 Core</div><div>🏗️ Builder</div><div>🔌 Circuit</div><div>💻 Code</div><div>📦 Unified</div><div>🔍 Verify ×2</div><div>⚖️ Consensus</div>
+</section>
+</main>
+<script>
+async function createProject(){
+ const r=await fetch('/api/projects',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:document.getElementById('name').value,idea:document.getElementById('idea').value})});
+ document.getElementById('result').textContent=JSON.stringify(await r.json(),null,2);
+}
+</script>
+</body></html>
